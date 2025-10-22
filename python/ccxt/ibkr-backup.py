@@ -77,7 +77,8 @@ class ibkr(Exchange, ImplicitAPI):
             port=config.get("port", 7497),
             client_id=config.get("client_id", 101),
         )
-    async def load_markets(self, reload=False, params={}):
+
+    def load_markets(self, reload=False, params={}):
         symbols = params.get("symbols", ["AAPL/USD", "MSFT/USD", "TSLA/USD"])
         markets = []
         for sym in symbols:
@@ -200,6 +201,7 @@ class ibkr(Exchange, ImplicitAPI):
                 'info':      { ... },     # the original unparsed market info from the exchange
             })
         return markets
+
 
     # CCXT method: fetchTicker
     def fetch_ticker(self, symbol, params={}):
